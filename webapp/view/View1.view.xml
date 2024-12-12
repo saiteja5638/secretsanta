@@ -1,0 +1,38 @@
+<mvc:View controllerName="secretsanta.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" showHeader="false" >
+      <FlexBox id="_IDGenFlexBox"  justifyContent="Center" alignContent="Center"  alignItems="Center"  > 
+      
+        <VBox id="_IDGenVBox1" >
+        <HBox id="_IDGenHBox" justifyContent="Center" alignContent="Center" alignItems="Center" >
+        <Label id="_IDGenLabel"  text="ID" class="sapUiSmallMargin" ></Label>
+        <Input id="_IDGenInput"  placeholder="BPSH**"  class="sapUiSmallMargin" ></Input>
+        </HBox>
+                <HBox id="_IDGenHBox1" justifyContent="Center" alignContent="Center" alignItems="Center" >
+        <Label id="_IDGenLabel1"  text="NAME"  class="sapUiSmallMargin" ></Label>
+        <Input id="_IDGenInput1"  placeholder="Sa******"  class="sapUiSmallMargin" ></Input>
+        </HBox>
+                <HBox id="_IDGenHBox2" justifyContent="Center" alignContent="Center" alignItems="Center" >
+        <Label id="_IDGenLabel2"  text="DOB"  class="sapUiSmallMargin" ></Label>
+        <Input id="_IDGenInput2"  placeholder="03/05/1999"  class="sapUiSmallMargin" ></Input>
+        </HBox>
+                <HBox id="_IDGenHBox3" justifyContent="Center" alignContent="Center" alignItems="Center" >
+        <Label id="_IDGenLabel3"  text="DOJ"  class="sapUiSmallMargin" ></Label>
+        <Input id="_IDGenInput3"  placeholder="05/02/2023"  class="sapUiSmallMargin" ></Input>
+        </HBox>
+                <HBox id="_IDGenHBox4" justifyContent="Center" alignContent="Center" alignItems="Center" >
+        <Label id="_IDGenLabel4"  text="CONTACT"  class="sapUiSmallMargin" ></Label>
+        <Input id="_IDGenInput4"  placeholder="7036305638"  class="sapUiSmallMargin" ></Input>
+        </HBox>
+ 
+        <HBox id="_IDGenHBox6" justifyContent="Center" alignContent="Center"  alignItems="Center" >
+        <Button id="_IDGenButton"  type="Emphasized"  text="Reavel"  press="onVaildation"  class="sapUiSmallMargin" ></Button>
+        </HBox>
+
+        </VBox>
+
+      </FlexBox>
+
+    </Page>
+</mvc:View>

@@ -1,0 +1,39 @@
+div#application-secretsanta-display-component---View1--_IDGenFlexBox {
+    height: 500px;
+}
+div#application-secretsanta-display-component---View1--_IDGenVBox1 {
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    width: 350px;
+    height: 400px;
+    color: black;
+    justify-content: space-evenly;
+    position: relative;
+    top: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+}
+div#application-secretsanta-display-component---View1--_IDGenInput4 {
+    position: relative;
+    left: -20px;
+}
+div#application-secretsanta-display-component---View1--_IDGenInput2 {
+    position: relative;
+    left: -5px;
+}
+div#application-secretsanta-display-component---View1--_IDGenInput1 {
+    position: relative;
+    left: -10px;
+}
+div#application-secretsanta-display-component---View1--page {
+    background-image: url('images/image.jpg');
+    /* Path to your image */
+    background-size: cover;
+    /* Scale image to cover the entire area */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
+    background-position: center;
+}
