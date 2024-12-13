@@ -27,7 +27,7 @@ sap.ui.define([
             var oArgs = oEvent.getParameter("arguments");
             var sId = oArgs.id;
             var sName = oArgs.name;
-            console.log(sId+" "+sName)
+           
             that.onBindings(sId)
 
             that.getOwnerComponent().getModel('ID').setData({
@@ -101,6 +101,7 @@ sap.ui.define([
                             that.busy1.close()
                             that.create.open()
                             sap.ui.getCore().byId("_IDGenTi5tle1").setText(res.NAME)
+                            that.sendEmail(USER_ID)
                         },
                         err:function(err)
                         {
@@ -135,6 +136,41 @@ sap.ui.define([
                         sap.ui.getCore().byId("_IDGenTi5tle1").setText(filtered[0].GIVER)
                     }
 
+                }
+            })
+        },
+        sendEmail:function(UserID)
+        {
+            that.getOwnerComponent().getModel().callFunction('/SendEmail',{
+                method: "GET",
+                urlParameters: {
+                    ID: UserID,
+                },
+                success:function(res)
+                {
+                    console.log(res)
+                    that.LiveUpdater()
+                },
+                err:function(er)
+                {
+                    console.log(er)
+                }
+            })
+        },
+        LiveUpdater:function()
+        {
+            that.getOwnerComponent().getModel().read('/secret_santa',{
+                success:function(res)
+                {
+                    let get_length =  res.results.length -1;
+
+
+                    that.byId("page1").setTitle(` ${get_length} `)
+   
+                },
+                err:function(err)
+                {
+                    console.log(err)
                 }
             })
         }
