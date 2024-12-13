@@ -7,6 +7,18 @@ sap.ui.define([
         onInit() {
             that = this;
 
+            if (!that.create) {
+
+                that.create = sap.ui.xmlfragment("secretsanta.view.display2", that);
+            }
+            if (!that.busy1) {
+
+                that.busy1 = new sap.m.BusyDialog({
+                    text:"Search For Secret Santa....."
+                   
+                });
+            }
+
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("View2").attachPatternMatched(this._onRouteMatched, this);
         },
@@ -22,8 +34,13 @@ sap.ui.define([
                 items:sId
             })
         },
+        onClose:function()
+        {
+            that.create.close()
+        },
         onBindings:function(sId)
         {
+            that.busy1.open()
             that.getOwnerComponent().getModel().read('/secret_santa',{
                 success:function(res)
                 {
@@ -37,18 +54,18 @@ sap.ui.define([
                         }
                         
                     });
-
-
                     that.getOwnerComponent().getModel('oEmployess').setData({
                         data:filtered_array
                     })
 
+                    that.byId("page1").setTitle(` ${filtered_array.length} `)
+                    
                     let oModel = new sap.ui.model.json.JSONModel({
                         items:filtered_array
                     })
 
                     that.byId("gridList").setModel(oModel)
-
+                    that.busy1.close()
 
                 },
                 error:function(err)
@@ -60,6 +77,8 @@ sap.ui.define([
         onUpdate_Infomation:function()
         {
 
+            let USER_ID = that.getOwnerComponent().getModel('ID').getData().items;
+
             let filtered_employee =  that.getOwnerComponent().getModel('oEmployess').getData().data;
 
             function getRandomRecord(dataArray) {
@@ -69,27 +88,19 @@ sap.ui.define([
             const randomRecord = getRandomRecord(filtered_employee);
             randomRecord['STATUS'] = 'YES';
 
-            let ID = that.getOwnerComponent().getModel('ID').getData().items;
-
             let edit_obj ={
                 GIVER:randomRecord.NAME
             }
 
-            that.getOwnerComponent().getModel().update(`/secret_santa('${ID}')`,edit_obj,{
+            that.getOwnerComponent().getModel().update(`/secret_santa('${USER_ID}')`,edit_obj,{
                 success:function(res)
                 {
-                    console.log(res)
-                    sap.m.MessageToast.show("updated")
-                    
                     that.getOwnerComponent().getModel().update(`/secret_santa('${randomRecord.ID}')`,randomRecord,{
                         success:function(res)
                         {
-                            console.log(res)
-                
-                            that.getOwnerComponent().getRouter().navTo("View3", {
-                                id: randomRecord.ID
-                                
-                            });
+                            that.busy1.close()
+                            that.create.open()
+                            sap.ui.getCore().byId("_IDGenTi5tle1").setText(res.NAME)
                         },
                         err:function(err)
                         {
@@ -108,20 +119,20 @@ sap.ui.define([
         },
         vaildtor:function()
         {
+            that.busy1.open()
             that.getOwnerComponent().getModel().read("/secret_santa",{
                 success:function(res)
                 {
-                    let ID = that.getOwnerComponent().getModel('ID').getData().items;
+                    let VAILDTOR_ID = that.getOwnerComponent().getModel('ID').getData().items;
 
-                    let filtered = res.results.filter(i=>i.ID == ID)
+                    let filtered = res.results.filter(i=>i.ID == VAILDTOR_ID)
 
                     if (filtered[0].GIVER==null) {
-                        
+                        that.onUpdate_Infomation()
                     } else {
-                        that.getOwnerComponent().getRouter().navTo("View3", {
-                            id: iltered[0].GIVER
-                            
-                        });
+                        that.busy1.close()
+                          that.create.open()
+                        sap.ui.getCore().byId("_IDGenTi5tle1").setText(filtered[0].GIVER)
                     }
 
                 }

@@ -2,22 +2,22 @@
 xmlns:f="sap.f"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page1" title="{i18n>title}" showHeader="false" >
+    <Page id="page1" title="49" titleAlignment="Center" showHeader="true" >
         		<f:GridList
 			id="gridList"
 			width="97%"
 			mode="SingleSelectMaster"
 			modeAnimationOn="true"
 			class="sapUiMediumMargin"
-			selectionChange="onUpdate_Infomation"
+			selectionChange="vaildtor"
 			items="{/items}">
 
-			<f:GridListItem id="_IDGenGridListItem1">
+			<f:GridListItem id="_IDGenGridListItem1" class="sapUiSmallMargin" >
 				<VBox id="_IDGenVBox" class="sapUiSmallMargin" >
 					<layoutData>
 						<FlexItemData id="_IDGenFlexItemData" growFactor="1" shrinkFactor="0" />
 					</layoutData>
-                    <Image id="_IDGenImage" src="https://www.opensourcetext.org/wp-content/uploads/2020/11/ssct-4.png"  width="50px" height="50px" class="sapUiMediumMarginBegin" ></Image>
+                    <Image id="_IDGenImage" src="https://www.opensourcetext.org/wp-content/uploads/2020/11/ssct-4.png"  width="100px" height="100px" class="sapUiSmallMargin" ></Image>
 				</VBox>
 			</f:GridListItem>
 		</f:GridList>

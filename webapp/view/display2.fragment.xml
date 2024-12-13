@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:table="sap.ui.table" xmlns:tnt="sap.tnt"   xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"  >
+<Dialog  id="createTask1"  title="Secret Santa "  titleAlignment="Center"  >
+<VBox id="_IDGenVBox41"  justifyContent="Center" alignContent="Center"  alignItems="Center">
+
+<Image id="_IDGenImage22" src="https://sneakysanta.com/img/secret-santa-generator-sneakysanta.png"  width="200px" height="200px"  ></Image>
+
+<FlexBox id="_IDGenFle5xBox2"  direction="Column" class="sapUiTinyMargin"  justifyContent="Center" alignContent="Center"  alignItems="Center" >  
+  <Title id="_IDGenTi5tle1"  text=""  ></Title>
+</FlexBox>
+</VBox>
+<footer>
+<Toolbar id="_IDGenToo55lbar" >
+<ToolbarSpacer id="_IDG55enToolbarSpacer" ></ToolbarSpacer>
+<Button id="_IDGenButt55on2"   text="close" type="Reject"  press="onClose"  ></Button>
+</Toolbar>
+</footer>
+</Dialog>
+</core:FragmentDefinition>

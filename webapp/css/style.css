@@ -6,7 +6,7 @@ div#application-secretsanta-display-component---View1--_IDGenVBox1 {
     border-radius: 20px;
     display: flex;
     width: 350px;
-    height: 400px;
+    height: 200px;
     color: black;
     justify-content: space-evenly;
     position: relative;
@@ -20,6 +20,10 @@ div#application-secretsanta-display-component---View1--_IDGenInput4 {
     position: relative;
     left: -20px;
 }
+div#application-secretsanta-display-component---View1--_IDGenInput {
+    position: relative;
+    left: -10px;
+}
 div#application-secretsanta-display-component---View1--_IDGenInput2 {
     position: relative;
     left: -5px;
@@ -29,6 +33,16 @@ div#application-secretsanta-display-component---View1--_IDGenInput1 {
     left: -10px;
 }
 div#application-secretsanta-display-component---View1--page {
+    background-image: url('../images/image.jpg');
+    /* Path to your image */
+    background-size: cover;
+    /* Scale image to cover the entire area */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
+    background-position: center;
+}
+
+div#application-secretsanta-display-component---View2--page1 {
     background-image: url('images/image.jpg');
     /* Path to your image */
     background-size: cover;
@@ -36,4 +50,74 @@ div#application-secretsanta-display-component---View1--page {
     background-repeat: no-repeat;
     /* Prevent the image from repeating */
     background-position: center;
+}
+
+ul#application-secretsanta-display-component---View2--gridList-listUl li {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+div#application-secretsanta-display-component---View3--_IDGenFlexBox1 {
+    height: 500px;
+}
+
+
+/* production */
+
+div#container-secretsanta---View1--page {
+    background-image: url('../images/sbp123.jpg');
+    /* Path to your image */
+    background-size: cover;
+    /* Scale image to cover the entire area */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
+    background-position: center;
+}
+
+div#container-secretsanta---View2--page1 {
+    background-image: url('../images/sbp123.jpg');
+    /* Path to your image */
+    background-size: cover;
+    /* Scale image to cover the entire area */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
+    background-position: center;
+}
+
+div#container-secretsanta---View1--_IDGenFlexBox {
+    height: 500px;
+}
+
+div#container-secretsanta---View1--_IDGenVBox1 {
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    width: 350px;
+    height: 200px;
+    color: black;
+    justify-content: space-evenly;
+    position: relative;
+    top: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+}
+
+div#container-secretsanta---View1--_IDGenInput4 {
+    position: relative;
+    left: -20px;
+}
+div#container-secretsanta---View1--_IDGenInput2 {
+    position: relative;
+    left: -5px;
+}
+div#container-secretsanta---View1--_IDGenInput1 {
+    position: relative;
+    left: -10px;
+}
+div#container-secretsanta---View1--_IDGenInput {
+    position: relative;
+    left: -10px;
 }
