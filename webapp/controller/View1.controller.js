@@ -55,7 +55,7 @@ sap.ui.define([
                         that.busy.close()
                         alert("Please provide vaild details ")
                     } else {
-                        if (find_detail) {
+                       
                             if (results[0].GIVER==null) {
      
                              let id =  results[0].ID;
@@ -67,7 +67,7 @@ sap.ui.define([
                              that.create.open()
                              sap.ui.getCore().byId("_IDGenTitle1").setText(results[0].GIVER)
                             }
-                         }
+                         
                     }
 
 
