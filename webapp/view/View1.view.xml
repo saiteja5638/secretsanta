@@ -14,7 +14,7 @@
         <Input id="_IDGenInput1"  placeholder="TYB******"  class="sapUiSmallMargin" ></Input>
         </HBox>
         <HBox id="_IDGenHBox6" justifyContent="Center" alignContent="Center"  alignItems="Center" >
-        <Button id="_IDGenButton"  type="Emphasized"  text="Reavel"  press="onVaildation"  class="sapUiSmallMargin" ></Button>
+        <Button id="_IDGenButton"  type="Emphasized"  text="Reveal"  press="onVaildation"  class="sapUiSmallMargin" ></Button>
         </HBox>
 
         </VBox>
