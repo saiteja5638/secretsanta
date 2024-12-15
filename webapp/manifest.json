@@ -102,7 +102,7 @@
       },
       {
           "name": "View2",
-          "pattern": "View2/{id}/{name}",
+          "pattern": "View2/{id}",
           "target": "View2"
       }
       ],

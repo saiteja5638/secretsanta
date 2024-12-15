@@ -1,0 +1,44 @@
+        onUpdate_Infomation:function(USER_ID)
+        {
+
+            // let USER_ID = that.getOwnerComponent().getModel('ID').getData().items;
+
+            let filtered_employee =  that.getOwnerComponent().getModel('oEmployess').getData().data;
+
+            function getRandomRecord(dataArray) {
+                const randomIndex = Math.floor(Math.random() * dataArray.length);
+                return dataArray[randomIndex];
+            }
+            const randomRecord = getRandomRecord(filtered_employee);
+            randomRecord['STATUS'] = 'YES';
+
+            let edit_obj ={
+                GIVER:randomRecord.NAME
+            }
+
+            that.getOwnerComponent().getModel().update(`/secret_santa('${USER_ID}')`,edit_obj,{
+                success:function(res)
+                {
+                    that.getOwnerComponent().getModel().update(`/secret_santa('${randomRecord.ID}')`,randomRecord,{
+                        success:function(res)
+                        {
+                            that.busy1.close()
+                            that.create.open()
+                            sap.ui.getCore().byId("_IDGenTi5tle1").setText(res.NAME)
+                            // that.sendEmail(USER_ID)
+                        },
+                        err:function(err)
+                        {
+                            console.log(err)
+                        }
+                    })
+
+                },
+                err:function(err)
+                {
+                    console.log(err)
+                    sap.m.MessageToast.show(" Not  updated")
+                }
+            })
+
+        },

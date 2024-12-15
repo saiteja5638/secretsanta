@@ -15,7 +15,7 @@ sap.ui.define([
             if (!that.busy) {
 
                 that.busy = new sap.m.BusyDialog({
-                    text:"Search For Secret Santa....."
+                    text:"Loading..."
                    
                 });
             }
@@ -28,12 +28,11 @@ sap.ui.define([
         {
             that.create.close()
         },
-        onVerify:function(ID,NAME)
+        onVerify:function(ID)
         {
             that.busy.close()
             that.getOwnerComponent().getRouter().navTo("View2", {
-                id: ID,
-                name: NAME
+                id: ID
             });
         },
         onVaildation:function()
@@ -58,10 +57,10 @@ sap.ui.define([
                        
                             if (results[0].GIVER==null) {
      
-                             let id =  results[0].ID;
-                             let name =  results[0].NAME;
+                             let id =  results[0].PASSKEY;
+                            
                              
-                             that.onVerify(id,name)
+                             that.onVerify(id)
                             } else {
                              that.busy.close()
                              that.create.open()

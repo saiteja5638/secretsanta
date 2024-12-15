@@ -14,7 +14,7 @@ sap.ui.define([
             if (!that.busy1) {
 
                 that.busy1 = new sap.m.BusyDialog({
-                    text:"Search For Secret Santa....."
+                    text:"Loading..."
                    
                 });
             }
@@ -26,8 +26,7 @@ sap.ui.define([
           
             var oArgs = oEvent.getParameter("arguments");
             var sId = oArgs.id;
-            var sName = oArgs.name;
-           
+            
             that.onBindings(sId)
 
             that.getOwnerComponent().getModel('ID').setData({
@@ -48,18 +47,13 @@ sap.ui.define([
 
                     res.results.forEach(element => {
 
-                        if ((element.STATUS == 'NOT')&&(element.ID != sId) ) {
+                        if ((element.STATUS == 'NOT')&&(element.PASSKEY != sId) ) {
                             
                             filtered_array.push(element)
                         }
                         
                     });
-                    that.getOwnerComponent().getModel('oEmployess').setData({
-                        data:filtered_array
-                    })
 
-                    that.byId("page1").setTitle(` ${filtered_array.length} `)
-                    
                     let oModel = new sap.ui.model.json.JSONModel({
                         items:filtered_array
                     })
@@ -74,50 +68,6 @@ sap.ui.define([
                 }
             })
         },
-        onUpdate_Infomation:function()
-        {
-
-            let USER_ID = that.getOwnerComponent().getModel('ID').getData().items;
-
-            let filtered_employee =  that.getOwnerComponent().getModel('oEmployess').getData().data;
-
-            function getRandomRecord(dataArray) {
-                const randomIndex = Math.floor(Math.random() * dataArray.length);
-                return dataArray[randomIndex];
-            }
-            const randomRecord = getRandomRecord(filtered_employee);
-            randomRecord['STATUS'] = 'YES';
-
-            let edit_obj ={
-                GIVER:randomRecord.NAME
-            }
-
-            that.getOwnerComponent().getModel().update(`/secret_santa('${USER_ID}')`,edit_obj,{
-                success:function(res)
-                {
-                    that.getOwnerComponent().getModel().update(`/secret_santa('${randomRecord.ID}')`,randomRecord,{
-                        success:function(res)
-                        {
-                            that.busy1.close()
-                            that.create.open()
-                            sap.ui.getCore().byId("_IDGenTi5tle1").setText(res.NAME)
-                            that.sendEmail(USER_ID)
-                        },
-                        err:function(err)
-                        {
-                            console.log(err)
-                        }
-                    })
-
-                },
-                err:function(err)
-                {
-                    console.log(err)
-                    sap.m.MessageToast.show(" Not  updated")
-                }
-            })
-
-        },
         vaildtor:function()
         {
             that.busy1.open()
@@ -126,10 +76,10 @@ sap.ui.define([
                 {
                     let VAILDTOR_ID = that.getOwnerComponent().getModel('ID').getData().items;
 
-                    let filtered = res.results.filter(i=>i.ID == VAILDTOR_ID)
+                    let filtered = res.results.filter(i=>i.PASSKEY == VAILDTOR_ID)
 
                     if (filtered[0].GIVER==null) {
-                        that.onUpdate_Infomation()
+                        that.onFindSecretSanta(filtered[0].ID)
                     } else {
                         that.busy1.close()
                           that.create.open()
@@ -149,7 +99,7 @@ sap.ui.define([
                 success:function(res)
                 {
                     console.log(res)
-                    that.LiveUpdater()
+                   
                 },
                 err:function(er)
                 {
@@ -157,20 +107,23 @@ sap.ui.define([
                 }
             })
         },
-        LiveUpdater:function()
+        onFindSecretSanta:function(User_ID)
         {
-            that.getOwnerComponent().getModel().read('/secret_santa',{
+            that.getOwnerComponent().getModel().callFunction('/GetGiver',{
+                method:'GET',
+                urlParameters:{
+                    ID:User_ID
+                },
                 success:function(res)
                 {
-                    let get_length =  res.results.length -1;
-
-
-                    that.byId("page1").setTitle(` ${get_length} `)
-   
+                    that.busy1.close()
+                    that.create.open()
+                    sap.ui.getCore().byId("_IDGenTi5tle1").setText(res.GetGiver.NAME)
+                    that.sendEmail(User_ID)
                 },
-                err:function(err)
+                error:function(err)
                 {
-                    console.log(err)
+                    alert("Please Retry After Sometiime ")
                 }
             })
         }
